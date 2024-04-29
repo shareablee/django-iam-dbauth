@@ -1,9 +1,8 @@
 import getpass
-
+from time import sleep
 import boto3
 
 from django_iam_dbauth.utils import resolve_cname
-
 
 def get_aws_connection_params(params):
     enabled = params.pop("use_iam_auth", None)
@@ -26,5 +25,6 @@ def get_aws_connection_params(params):
             Port=params.get("port", 5432),
             DBUsername=params.get("user") or getpass.getuser(),
         )
+        sleep(1)
 
     return params
