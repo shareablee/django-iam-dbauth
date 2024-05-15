@@ -26,5 +26,8 @@ def get_aws_connection_params(params):
             Port=params.get("port", 5432),
             DBUsername=params.get("user") or getpass.getuser(),
         )
+    else:
+        params.pop("region_name", None)
+        params.pop("resolve_cname_enabled", None)
 
     return params
